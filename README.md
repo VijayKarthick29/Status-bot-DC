@@ -71,7 +71,14 @@ VK-VC-STATUS-BOT/
 
 ### 2. Run Locally on Windows
 
-Open PowerShell in the project directory:
+1. Clone the repository:
+
+```bash
+git clone https://github.com/VijayKarthick29/Status-bot-DC.git
+cd Status-bot-DC
+```
+
+2. Open PowerShell in the project directory:
 
 ```powershell
 py -3.12 -m venv .venv
