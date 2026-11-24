@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: vk-vc-status-bot
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: DASHBOARD_PASSWORD
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: "8000"
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: STATE_PATH
+        value: /data/keeper_state.json
+      - key: STATUS_KEEP_INTERVAL
+        value: "600"
+
+    # For true 24/7 keepers, move to an always-on plan and uncomment this disk.
+    # Without it, keeper_state.json lives in the container and is lost on restart.
+    # disk:
+    #   name: vk-status-state
+    #   mountPath: /data
+    #   sizeGB: 1

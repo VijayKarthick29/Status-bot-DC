@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#100b19"><title>VK | VC STATUS</title>
+  <link rel="stylesheet" href="/static/style.css?v=6">
+</head>
+<body data-auth="__AUTH_STATE__">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">VK</div><div><b>VIJAY KARTHICK</b><small>VC STATUS CONTROL</small></div></div>
+      <div class="nav-label">WORKSPACE</div><div class="nav-item active">◈ <span>Voice Status</span></div>
+      <div class="nav-item">▤ <span>Quick Presets</span><em>SOON</em></div>
+      <div class="nav-item">◷ <span>Activity Log</span><em>SOON</em></div>
+      <div class="sidebar-bottom"><span class="dot"></span><span id="botState">Checking bot…</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><small>CONTROL PANEL / OVERVIEW</small><h1>Voice Status Manager</h1></div><button id="logoutBtn" class="ghost hidden">Log out ↗</button></header>
+      <section id="loginPanel" class="login-card hidden">
+        <div class="eyebrow">SECURE DASHBOARD ACCESS</div><h2>Welcome back.</h2><p>Enter your dashboard password to manage your Discord voice statuses.</p>
+        <form id="loginForm"><label for="password">Dashboard password</label><input id="password" type="password" autocomplete="current-password" placeholder="Enter password" required><button class="primary wide" type="submit">Unlock dashboard <span>→</span></button></form>
+        <div id="loginError" class="error"></div>
+      </section>
+      <section id="appPanel" class="hidden">
+        <div class="stats"><div class="stat-card"><span>BOT CONNECTION</span><strong id="connectionValue">Checking…</strong><small>Discord gateway</small></div><div class="stat-card"><span>CONNECTED SERVERS</span><strong id="serverCount">—</strong><small>Servers available to bot</small></div><div class="stat-card"><span>ACTIVE KEEPERS</span><strong id="keeperCount">—</strong><small>Status + voice sessions</small></div></div>
+        <div class="content-grid">
+          <section class="panel editor"><div class="panel-head"><div><div class="eyebrow">VOICE CHANNEL</div><h2>Update status</h2></div><span class="pill">LIVE CONTROL</span></div>
+            <label for="guildSelect">Discord server</label><select id="guildSelect"><option value="">Loading servers…</option></select>
+            <label for="channelSelect">Voice channel</label><select id="channelSelect" disabled><option value="">Choose a server first</option></select>
+            <div class="label-row"><label for="statusInput">Custom status</label><span id="charCount">0 / 500</span></div>
+            <textarea id="statusInput" maxlength="500" rows="4" placeholder="⚡ VK IS IN THE LOUNGE"></textarea>
+            <div class="presets"><span>QUICK INSERT</span><button data-preset="⚡ VK IS IN THE LOUNGE">⚡ Lounge</button><button data-preset="🎧 Music + vibes">🎧 Music</button><button data-preset="🖤 Chilling with the squad">🖤 Chill</button></div>
+            <div class="emoji-box"><div class="label-row"><span class="eyebrow">SERVER EMOJIS</span><span id="emojiHint">Pick a server first</span></div><div id="emojiList" class="emoji-list"></div></div>
+            <div class="toggles">
+              <label class="toggle"><input id="keepToggle" type="checkbox" checked><span class="switch"></span><span><b>Keep status alive 24/7</b><small>Re-applies on a timer and after every bot restart</small></span></label>
+              <label class="toggle"><input id="connectToggle" type="checkbox"><span class="switch"></span><span><b>Stay in channel 24/7</b><small>Bot joins the voice channel and auto-rejoins if dropped</small></span></label>
+            </div>
+            <div class="actions"><button id="clearBtn" class="secondary">Clear status</button><button id="setBtn" class="primary">Set voice status <span>→</span></button></div><div id="result" role="status" class="result"></div>
+          </section>
+          <section class="panel preview-panel"><div class="eyebrow">PREVIEW</div><h2>How it looks</h2><div class="discord-preview"><div class="preview-top"><span class="discord-icon">◉</span><div><b>Discord</b><small>VOICE CHANNEL</small></div><span class="live-pill">● LIVE</span></div><div class="channel-line"><span>🔊</span><b id="previewChannel">Choose a channel</b></div><div class="status-bubble"><small>CHANNEL STATUS</small><p id="previewStatus">Your custom status will appear here.</p></div><div class="preview-footer"><span class="avatar">VK</span><div><b>VK STATUS BOT</b><small>Voice status manager</small></div></div></div><div class="note"><b>Permission reminder</b><p>The bot needs <code>SET_VOICE_CHANNEL_STATUS</code>. To stay connected it also needs <code>CONNECT</code> and <code>SPEAK</code>.</p></div><div class="note"><b>Why re-apply?</b><p>Discord can drop a channel status when the channel empties or someone clears it. The bot re-asserts saved statuses every <span id="intervalLabel">10</span> minutes and on reconnect.</p></div></section>
+        </div>
+        <section class="panel keepers"><div class="panel-head"><div><div class="eyebrow">PERSISTENCE</div><h2>Active keepers <span id="restoreBadge" class="restore-badge">0 restores</span></h2></div><button id="refreshKeepers" class="ghost">Refresh ↻</button></div><div id="keeperList" class="keeper-list"><p class="muted">No keepers yet. Set a status with the toggles enabled to add one.</p></div></section>
+      </section>
+      <footer>VIJAY KARTHICK <span>DISCORD BOT • PRIVATE CONTROL PANEL</span></footer>
+    </main>
+  </div>
+  <script>window.VK_CSRF = "__CSRF_TOKEN__";</script><script src="/static/app.js?v=6"></script>
+</body></html>
